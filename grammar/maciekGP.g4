@@ -10,13 +10,13 @@ statement : assignment
 
 assignment : variable '=' expression;
 
-ifStatement : 'if' '(' condition ')' blockStatement ('else' blockStatement)?;
+ifStatement : 'if' '(' condition ')' blockStatement (else blockStatement)?;
 
 condition : expression comparator expression;
 
 blockStatement : '{' statement* '}';
 
-loopStatement : 'loop' constant blockStatement;
+loopStatement : 'loop' (constant | variable) blockStatement;
 
 print : 'print' '(' expression ')';
 
@@ -30,11 +30,13 @@ nestedExpression : '(' expression operator expression ')';
 
 read : 'read()';
 
-operator : '*' | '/' | '+' | '-' ;
+operator : '*' | '/' | '+' | '-' | '%';
 comparator : '==' | '!=' |'<' | '>' | '<=' | '>=';
+else : 'else';
 
 constant : INT;
 variable : 'x_'INT;
 
+COMMENT : '//' ~[\r\n]* -> skip;
 WS : [ \t\r\n]+ -> skip;
 INT : [0-9]+;

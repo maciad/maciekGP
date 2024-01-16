@@ -1,0 +1,14 @@
+x_1 = 0
+//asdfasdfasd
+loop 10
+{
+    if((x_1 % 2) == 0)
+    {
+    print(x_1)
+    }
+    else
+    {
+    print((x_1 + 10))
+    }
+    x_1 = (x_1 + 1)
+}
