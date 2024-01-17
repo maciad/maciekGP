@@ -68,5 +68,3 @@ class Node:
 
         node1.parent = parent2
         node2.parent = parent1
-
-
