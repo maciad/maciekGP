@@ -10,7 +10,7 @@ statement : assignment
 
 assignment : variable '=' expression;
 
-ifStatement : 'if' '(' condition ')' blockStatement (else blockStatement)?;
+ifStatement : 'if' '(' condition ')' blockStatement ('else' blockStatement)?;
 
 condition : expression comparator expression;
 
@@ -32,7 +32,7 @@ read : 'read()';
 
 operator : '*' | '/' | '+' | '-' | '%';
 comparator : '==' | '!=' |'<' | '>' | '<=' | '>=';
-else : 'else';
+//else : 'else';
 
 constant : INT;
 variable : 'x_'INT;

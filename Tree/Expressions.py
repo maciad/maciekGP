@@ -1,5 +1,7 @@
 from Node2 import Node
 from Interfaces import *
+from Operator import Operator
+from NodeFactory import NodeFactory
 
 
 class Expression(Node):
@@ -8,9 +10,9 @@ class Expression(Node):
     def evaluate(self, program_run_context):
         pass
 
-    def new_expression(self):
-        # TODO: NodeFactory
-        pass
+    @staticmethod
+    def new_expression(ctx):
+        return NodeFactory.get_new_expression(ctx.config, ctx)
 
     def grown(self, ctx):
         if ctx.rand.choice([True, False]):
