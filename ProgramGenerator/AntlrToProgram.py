@@ -22,13 +22,18 @@ class AntlrToProgram(maciekGPVisitor):
         if ctx.constant():
             repeat_times = self.visit(ctx.constant())
         else:
+            # print(ctx.variable().getText())
+            # print()
             repeat_times = self.visit(ctx.variable())
         return LoopStatement(repeat_times, self.visit(ctx.blockStatement()))
 
     def visitRead(self, ctx: maciekGPParser.ReadContext):
+        # print(ctx.getText())
+        # return Read().evaluate(ctx)
         return Read()
 
     def visitPrint(self, ctx: maciekGPParser.PrintContext):
+        # print(ctx.getChild(2).getText())
         return Print(self.visit(ctx.expression()))
 
     def visitIfStatement(self, ctx: maciekGPParser.IfStatementContext):
@@ -46,16 +51,20 @@ class AntlrToProgram(maciekGPVisitor):
     def visitExpression(self, ctx: maciekGPParser.ExpressionContext):
         return self.visit(ctx.getChild(0))
 
-    def visitNestedExpression(self, ctx:maciekGPParser.NestedExpressionContext):
-        return NestedExpression(ctx.expression(0), ctx.operator(), ctx.expression(1))
+    def visitNestedExpression(self, ctx: maciekGPParser.NestedExpressionContext):
+        print(ctx.getText())
+        return NestedExpression(self.visit(ctx.expression(0)), self.visit(ctx.operator()), self.visit(ctx.expression(1)))
 
     def visitConstant(self, ctx: maciekGPParser.ConstantContext):
+        # print(ctx.getText())
         return Constant(int(ctx.getChild(0).getText()))
 
     def visitVariable(self, ctx: maciekGPParser.VariableContext):
+        print(ctx.getText())
         return Variable(int(ctx.getText()[2:]))
 
     def visitOperator(self, ctx: maciekGPParser.OperatorContext):
+        print(ctx.getChild(0).getText())
         return Operator(ctx.getChild(0).getText())
 
     def visitComparator(self, ctx: maciekGPParser.ComparatorContext):

@@ -120,6 +120,7 @@ class Assignment(Statement, IGrowable):
 
     def invoke(self, prc):
         prc.increment_execution_time()
+        print(self.children[0].name, self.children[1].evaluate(prc))
         prc.variables[self.children[0].name] = self.children[1].evaluate(prc)
 
     def grow(self, ctx):
@@ -145,7 +146,9 @@ class Print(Statement, IGrowable):
 
     def invoke(self, prc):
         prc.increment_execution_time()
-        print(self.children[0].evaluate(prc))
+        # print(self.children[0].evaluate(prc))
+        prc.push(self.children[0].evaluate(prc))
+        # print(prc.output)
 
     def __str__(self):
         return 'print(' + str(self.children[0]) + ')'

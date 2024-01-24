@@ -81,6 +81,7 @@ class Constant(Expression, IMutable):
 class Read(Expression):
     def evaluate(self, prc):
         return prc.pop()
+        # return int(input())
 
     def __str__(self):
         return 'read()'
@@ -96,6 +97,7 @@ class Variable(Expression, IMutable):
         self.name = f'x_{index}'
 
     def evaluate(self, prc):
+        print('evaluated', prc.variables)
         return prc.variables.get(self.name)
 
     def __str__(self):
@@ -107,7 +109,8 @@ class Variable(Expression, IMutable):
 
     @staticmethod
     def random(ctx):
-        count = ctx.variable_count
+        # count = ctx.variable_count
+        count = len(ctx.variables)
         if count == 0:
             return None
         idx = ctx.rand.randint(0, ctx.variable_count - 1)
@@ -115,6 +118,7 @@ class Variable(Expression, IMutable):
 
     @staticmethod
     def random_or_new(ctx):
-        count = ctx.variable_count
+        # count = ctx.variable_count
+        count = len(ctx.variables)
         idx = ctx.rand.randint(-1, count - 1)
         return Variable(idx) if idx >= 0 else Variable(count)

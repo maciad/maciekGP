@@ -62,8 +62,13 @@ class Program(Node, IMutable, IGrowable):
         return s
 
     def grow(self, ctx=None):
+        # if ctx is not None:
+        #     self.children.append(Statement.new_statement(ctx))
         if ctx is not None:
-            self.children.append(Statement.new_statement(ctx))
+            new_statement = Statement.new_statement(ctx)
+            self.children.append(new_statement)
+            new_statement.parent = self
+            new_statement.update_parents()
         else:
             x = self.growables
             for _ in range(10):
