@@ -74,11 +74,6 @@ class maciekGPVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by maciekGPParser#else.
-    def visitElse(self, ctx:maciekGPParser.ElseContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by maciekGPParser#constant.
     def visitConstant(self, ctx:maciekGPParser.ConstantContext):
         return self.visitChildren(ctx)

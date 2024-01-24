@@ -125,15 +125,6 @@ class maciekGPListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by maciekGPParser#else.
-    def enterElse(self, ctx:maciekGPParser.ElseContext):
-        pass
-
-    # Exit a parse tree produced by maciekGPParser#else.
-    def exitElse(self, ctx:maciekGPParser.ElseContext):
-        pass
-
-
     # Enter a parse tree produced by maciekGPParser#constant.
     def enterConstant(self, ctx:maciekGPParser.ConstantContext):
         pass
