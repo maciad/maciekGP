@@ -86,9 +86,9 @@ class BlockStatement(Statement, IMutable, IGrowable):
 
 
 class LoopStatement(Statement):
-    def __init__(self, repeat_times, block):
+    def __init__(self, constant_or_variable, block):
         super().__init__()
-        self.children = [repeat_times, block]
+        self.children = [constant_or_variable, block]
 
     @staticmethod
     def new_loop(ctx):
@@ -96,9 +96,19 @@ class LoopStatement(Statement):
             return LoopStatement(Constant.new_constant(ctx), BlockStatement())
         return LoopStatement(Variable.random(ctx), BlockStatement())
 
+    # def invoke(self, prc):
+    #     prc.increment_execution_time()
+    #     for _ in range(self.children[0].evaluate(prc)):
+    #         self.children[1].invoke(prc)
+
     def invoke(self, prc):
         prc.increment_execution_time()
-        for _ in range(self.children[0].evaluate(prc)):
+        if isinstance(self.children[0], Constant):
+            repeat_times = self.children[0].value
+        else:
+            repeat_times = prc.variables.get(self.children[0].name)
+        print(repeat_times, "SDFASDFASDF")
+        for _ in range(repeat_times):
             self.children[1].invoke(prc)
 
     def full_grow(self, ctx, target_depth):
@@ -120,7 +130,7 @@ class Assignment(Statement, IGrowable):
 
     def invoke(self, prc):
         prc.increment_execution_time()
-        print(self.children[0].name, self.children[1].evaluate(prc))
+        # print(self.children[0].name, self.children[1].evaluate(prc))
         prc.variables[self.children[0].name] = self.children[1].evaluate(prc)
 
     def grow(self, ctx):

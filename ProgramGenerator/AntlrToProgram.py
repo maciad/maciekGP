@@ -16,16 +16,22 @@ class AntlrToProgram(maciekGPVisitor):
         return self.visit(ctx.getChild(0))
 
     def visitBlockStatement(self, ctx: maciekGPParser.BlockStatementContext):
-        return BlockStatement(self.visit(child) for child in ctx.children[1:-1])
+        return BlockStatement([self.visit(child) for child in ctx.children[1:-1]])
+
+    # def visitLoopStatement(self, ctx: maciekGPParser.LoopStatementContext):
+    #     if ctx.constant():
+    #         print(ctx.constant().getText())
+    #         repeat_times = self.visit(ctx.constant())
+    #     else:
+    #         print(ctx.variable().getText())
+    #         # print()
+    #         repeat_times = self.visit(ctx.variable())
+    #     return LoopStatement(repeat_times, self.visit(ctx.blockStatement()))
 
     def visitLoopStatement(self, ctx: maciekGPParser.LoopStatementContext):
         if ctx.constant():
-            repeat_times = self.visit(ctx.constant())
-        else:
-            # print(ctx.variable().getText())
-            # print()
-            repeat_times = self.visit(ctx.variable())
-        return LoopStatement(repeat_times, self.visit(ctx.blockStatement()))
+            return LoopStatement(self.visit(ctx.constant()), self.visit(ctx.blockStatement()))
+        return LoopStatement(self.visit(ctx.variable()), self.visit(ctx.blockStatement()))
 
     def visitRead(self, ctx: maciekGPParser.ReadContext):
         # print(ctx.getText())
@@ -37,9 +43,12 @@ class AntlrToProgram(maciekGPVisitor):
         return Print(self.visit(ctx.expression()))
 
     def visitIfStatement(self, ctx: maciekGPParser.IfStatementContext):
-        if ctx.else_():
-            return IfStatement(self.visit(ctx.condition()), self.visit(ctx.blockStatement(0)),
-                               self.visit(ctx.blockStatement(1)))
+        # if ctx.else_():
+        #     return IfStatement(self.visit(ctx.condition()), self.visit(ctx.blockStatement(0)),
+        #                        self.visit(ctx.blockStatement(1)))
+        # return IfStatement(self.visit(ctx.condition()), self.visit(ctx.blockStatement(0)))
+        if ctx.children[6].getText() == "else":
+            return IfStatement(self.visit(ctx.condition()), self.visit(ctx.blockStatement(0)), self.visit(ctx.blockStatement(1)))
         return IfStatement(self.visit(ctx.condition()), self.visit(ctx.blockStatement(0)))
 
     def visitCondition(self, ctx: maciekGPParser.ConditionContext):
@@ -60,7 +69,7 @@ class AntlrToProgram(maciekGPVisitor):
         return Constant(int(ctx.getChild(0).getText()))
 
     def visitVariable(self, ctx: maciekGPParser.VariableContext):
-        print(ctx.getText())
+        # print(ctx.getText())
         return Variable(int(ctx.getText()[2:]))
 
     def visitOperator(self, ctx: maciekGPParser.OperatorContext):

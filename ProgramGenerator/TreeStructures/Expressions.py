@@ -97,7 +97,7 @@ class Variable(Expression, IMutable):
         self.name = f'x_{index}'
 
     def evaluate(self, prc):
-        print('evaluated', prc.variables)
+        # print('evaluated', prc.variables)
         return prc.variables.get(self.name)
 
     def __str__(self):
