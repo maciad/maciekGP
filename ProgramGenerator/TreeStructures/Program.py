@@ -4,6 +4,7 @@ from .Node2 import Node
 from .Interfaces import *
 from .Statements import Statement
 from .Expressions import Variable
+# from ProgramGenerator.TreeConfig import TreeConfig
 
 
 class Program(Node, IMutable, IGrowable):

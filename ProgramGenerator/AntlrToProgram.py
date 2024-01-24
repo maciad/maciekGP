@@ -47,11 +47,16 @@ class AntlrToProgram(maciekGPVisitor):
         #     return IfStatement(self.visit(ctx.condition()), self.visit(ctx.blockStatement(0)),
         #                        self.visit(ctx.blockStatement(1)))
         # return IfStatement(self.visit(ctx.condition()), self.visit(ctx.blockStatement(0)))
-        if ctx.children[6].getText() == "else":
+        # if ctx.children[5].getText() == "else":
+        if len(ctx.children) > 5:
             return IfStatement(self.visit(ctx.condition()), self.visit(ctx.blockStatement(0)), self.visit(ctx.blockStatement(1)))
         return IfStatement(self.visit(ctx.condition()), self.visit(ctx.blockStatement(0)))
 
     def visitCondition(self, ctx: maciekGPParser.ConditionContext):
+        # print(ctx.getText())
+        # print(ctx.expression(0).getText())
+        # print(ctx.comparator().getText())
+        # print(ctx.expression(1).getText())
         return Condition(self.visit(ctx.expression(0)), self.visit(ctx.comparator()), self.visit(ctx.expression(1)))
 
     def visitAssignment(self, ctx: maciekGPParser.AssignmentContext):
@@ -61,7 +66,7 @@ class AntlrToProgram(maciekGPVisitor):
         return self.visit(ctx.getChild(0))
 
     def visitNestedExpression(self, ctx: maciekGPParser.NestedExpressionContext):
-        print(ctx.getText())
+        # print(ctx.getText())
         return NestedExpression(self.visit(ctx.expression(0)), self.visit(ctx.operator()), self.visit(ctx.expression(1)))
 
     def visitConstant(self, ctx: maciekGPParser.ConstantContext):
@@ -73,8 +78,9 @@ class AntlrToProgram(maciekGPVisitor):
         return Variable(int(ctx.getText()[2:]))
 
     def visitOperator(self, ctx: maciekGPParser.OperatorContext):
-        print(ctx.getChild(0).getText())
+        # print(ctx.getChild(0).getText())
         return Operator(ctx.getChild(0).getText())
 
     def visitComparator(self, ctx: maciekGPParser.ComparatorContext):
-        return Comparator(ctx.getChild(0).getText())
+        # print('comp' + ctx.getText() + 'comp')
+        return Comparator(ctx.getText())

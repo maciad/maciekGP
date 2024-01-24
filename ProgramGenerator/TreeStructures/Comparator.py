@@ -12,6 +12,7 @@ class Comparator(Node, IMutable):
         if comparator not in self.comparators:
             raise ValueError(f'Unknown comparator: {comparator}')
         self.comparator = comparator
+        # print(self.comparator + 'asdfasdf')
 
     def __str__(self):
         return self.comparator
@@ -55,18 +56,19 @@ class Condition(Node, IGrowable):
         return f'({self.expression} {self.comparator} {self.expression2})'
 
     def evaluate(self, prc):
+        # print(str(self.comparator) == '==')
         prc.increment_execution_time()
-        if self.comparator == '<':
+        if str(self.comparator) == '<':
             return self.expression.evaluate(prc) < self.expression2.evaluate(prc)
-        elif self.comparator == '>':
+        elif str(self.comparator) == '>':
             return self.expression.evaluate(prc) > self.expression2.evaluate(prc)
-        elif self.comparator == '==':
+        elif str(self.comparator) == '==':
             return abs(self.expression.evaluate(prc) - self.expression2.evaluate(prc)) < self.TOLERANCE
-        elif self.comparator == '!=':
+        elif str(self.comparator) == '!=':
             return abs(self.expression.evaluate(prc) - self.expression2.evaluate(prc)) > self.TOLERANCE
-        elif self.comparator == '<=':
+        elif str(self.comparator) == '<=':
             return self.expression.evaluate(prc) <= self.expression2.evaluate(prc)
-        elif self.comparator == '>=':
+        elif str(self.comparator) == '>=':
             return self.expression.evaluate(prc) >= self.expression2.evaluate(prc)
         raise ValueError(f'Unknown comparator: {self.comparator}')
 

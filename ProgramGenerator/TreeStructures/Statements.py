@@ -107,7 +107,7 @@ class LoopStatement(Statement):
             repeat_times = self.children[0].value
         else:
             repeat_times = prc.variables.get(self.children[0].name)
-        print(repeat_times, "SDFASDFASDF")
+        # print(repeat_times, "SDFASDFASDF")
         for _ in range(repeat_times):
             self.children[1].invoke(prc)
 
