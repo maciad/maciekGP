@@ -55,7 +55,7 @@ class BlockStatement(Statement, IMutable, IGrowable):
 
     def grow_self_or_children(self, ctx):
         growables = self.growables
-        for _ in range(10):
+        for _ in range(4):
             t = ctx.config.type_to_grow()               # TODO: update methods ?
             growables_ = [x for x in growables if isinstance(x, t)]
             if growables_:
@@ -116,7 +116,7 @@ class LoopStatement(Statement):
 
     def __str__(self):
         self.update_indent()
-        return "loop" + str(self.children[0]) + ":\n" + str(self.children[1])
+        return "loop " + str(self.children[0]) + ":\n" + str(self.children[1])
 
 
 class Assignment(Statement, IGrowable):

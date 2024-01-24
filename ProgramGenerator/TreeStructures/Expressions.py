@@ -120,5 +120,5 @@ class Variable(Expression, IMutable):
     def random_or_new(ctx):
         # count = ctx.variable_count
         count = len(ctx.variables)
-        idx = ctx.rand.randint(-1, count - 1)
+        idx = ctx.rand.randint(-1, count)
         return Variable(idx) if idx >= 0 else Variable(count)

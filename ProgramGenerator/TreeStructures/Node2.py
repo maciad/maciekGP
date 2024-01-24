@@ -19,8 +19,9 @@ class Node:
     def update_parents(self):
         if self.children:
             for n in self.children:
-                n.parent = self
-                n.update_parents()
+                if n is not None:
+                    n.parent = self
+                    n.update_parents()
 
     def get_nested_nodes(self):
         x = [self]
@@ -29,9 +30,23 @@ class Node:
                 x.extend(n.get_nested_nodes())
         return x
 
+    # def get_nested_nodes(self):
+    #     x = [self] if self is not None else []
+    #     if self.children:
+    #         # Dodano warunek, aby sprawdzić, czy element jest obiektem typu Node
+    #         x.extend(n.get_nested_nodes() for n in self.children if isinstance(n, Node))
+    #     return x
+
+    # def get_depth(self):
+    #     if self.children and len(self.children) > 0:
+    #         return max(n.get_depth() for n in self.children) + 1
+    #     return 1
+
     def get_depth(self):
-        if self.children and len(self.children) > 0:
-            return max(n.get_depth() for n in self.children) + 1
+        if self.children:
+            # Dodano warunek, aby sprawdzić, czy element jest obiektem typu Node
+            children_depths = [n.get_depth() for n in self.children if isinstance(n, Node)]
+            return max(children_depths, default=0) + 1
         return 1
 
     def clone(self):

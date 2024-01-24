@@ -11,21 +11,21 @@ class TreeConfig:
         # Tree Basic Data
         self.max_execution_time = 1000
         self.min_node_count = 15
-        self.max_depth = 6
+        self.max_depth = 8
 
         # Tree Variables range
         self.min_variable_value = 0
         self.max_variable_value = 25
 
         # Tree Structure Generation Data
-        self.new_assignment_chance_factor = 6
+        self.new_assignment_chance_factor = 10
         self.new_if_statement_chance_factor = 6
         self.new_loop_chance_factor = 7
         self.new_print_chance_factor = 1
 
-        self.new_variable_chance_factor = 2
-        self.new_constant_chance_factor = 6
-        self.new_read_chance_factor = 0
+        self.new_variable_chance_factor = 20
+        self.new_constant_chance_factor = 20
+        self.new_read_chance_factor = 3
 
         self.grow_program_chance_factor = 5
         self.grow_if_statement_chance_factor = 2
