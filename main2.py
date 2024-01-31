@@ -20,9 +20,14 @@ def main():
     # tree_xd.invoke(prc)
     # print('output', prc.get_output())
 
-    config = TreeConfig(max_depth=8)
-    program_2 = generate_program_from_config(config, depth_percentage=90)
+    config = TreeConfig(max_depth=6)
+    # program_2 = generate_program_from_config(config, depth_percentage=100)
+    program_2 = generate_program_node_count(min_node_count=10)
     print(program_2)
+
+    # execute program_2 using lexer and parser
+    program_2.invoke(prc)
+    print(prc.output)
 
     # p = generate_program_node_count(12)
 

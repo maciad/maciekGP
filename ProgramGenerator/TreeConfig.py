@@ -19,9 +19,9 @@ class TreeConfig:
 
         # Tree Structure Generation Data
         self.new_assignment_chance_factor = 10
-        self.new_if_statement_chance_factor = 6
-        self.new_loop_chance_factor = 7
-        self.new_print_chance_factor = 1
+        self.new_if_statement_chance_factor = 5
+        self.new_loop_chance_factor = 5
+        self.new_print_chance_factor = 5
 
         self.new_variable_chance_factor = 20
         self.new_constant_chance_factor = 20

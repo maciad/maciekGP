@@ -8,6 +8,7 @@ from .Expressions import Variable
 
 class Program(Node, IMutable, IGrowable):
     TAB = ' '
+    variable_counter = 0
 
     def __init__(self, seed=None, children=None, config=None):
         super().__init__()
