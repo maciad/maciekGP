@@ -4,7 +4,7 @@ import copy
 class Node:
     def __init__(self):
         self.parent = None
-        self.children = None
+        self.children = []
         self.indent = 0
 
     @property

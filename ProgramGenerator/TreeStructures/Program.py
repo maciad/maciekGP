@@ -4,7 +4,6 @@ from .Node2 import Node
 from .Interfaces import *
 from .Statements import Statement
 from .Expressions import Variable
-# from ProgramGenerator.TreeConfig import TreeConfig
 
 
 class Program(Node, IMutable, IGrowable):
@@ -13,7 +12,8 @@ class Program(Node, IMutable, IGrowable):
     def __init__(self, seed=None, children=None, config=None):
         super().__init__()
         self.rand = Random(seed) if seed is not None else Random()
-        self.config = config if config is not None else None # else TreeConfig()  TODO: TreeConfig
+        from ProgramGenerator.TreeConfig import TreeConfig
+        self.config = config if config is not None else TreeConfig()  # TODO: TreeConfig
         self.children = children if children is not None else []
 
     @property

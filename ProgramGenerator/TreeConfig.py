@@ -7,11 +7,11 @@ from ProgramGenerator.TreeStructures.Comparator import Condition
 
 
 class TreeConfig:
-    def __init__(self):
-        # Tree Basic Data
-        self.max_execution_time = 1000
-        self.min_node_count = 15
-        self.max_depth = 8
+    def __init__(self, max_execution_time=1000, min_node_count=15, max_depth=8):
+        # # Tree Basic Data
+        self.max_execution_time = max_execution_time
+        self.min_node_count = min_node_count
+        self.max_depth = max_depth
 
         # Tree Variables range
         self.min_variable_value = 0

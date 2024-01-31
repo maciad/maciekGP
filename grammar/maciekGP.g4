@@ -14,7 +14,7 @@ ifStatement : 'if' '(' condition ')' blockStatement ('else' blockStatement)?;
 
 condition : expression comparator expression;
 
-blockStatement : '{' statement* '}';
+blockStatement : '{' statement+ '}';
 
 loopStatement : 'loop' (constant | variable) blockStatement;
 

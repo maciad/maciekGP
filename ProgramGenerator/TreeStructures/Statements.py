@@ -55,7 +55,7 @@ class BlockStatement(Statement, IMutable, IGrowable):
 
     def grow_self_or_children(self, ctx):
         growables = self.growables
-        for _ in range(4):
+        for _ in range(10):
             t = ctx.config.type_to_grow()               # TODO: update methods ?
             growables_ = [x for x in growables if isinstance(x, t)]
             if growables_:
@@ -63,7 +63,7 @@ class BlockStatement(Statement, IMutable, IGrowable):
                 self.update_parents()
                 return
         if growables:
-            growables[ctx.rand.choice(len(growables))].grow(ctx)
+            growables[ctx.rand.randint(0, len(growables) - 1)].grow(ctx)
 
         self.update_parents()
 
@@ -94,7 +94,7 @@ class LoopStatement(Statement):
     def new_loop(ctx):
         if ctx.rand.choice([True, False]):
             return LoopStatement(Constant.new_constant(ctx), BlockStatement())
-        return LoopStatement(Variable.random(ctx), BlockStatement())
+        return LoopStatement(Variable.random_or_new(ctx), BlockStatement())
 
     # def invoke(self, prc):
     #     prc.increment_execution_time()

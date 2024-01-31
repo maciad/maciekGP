@@ -20,8 +20,8 @@ def main():
     # tree_xd.invoke(prc)
     # print('output', prc.get_output())
 
-    config = TreeConfig()
-    program_2 = generate_program_from_config(config, 90)
+    config = TreeConfig(max_depth=8)
+    program_2 = generate_program_from_config(config, depth_percentage=90)
     print(program_2)
 
     # p = generate_program_node_count(12)

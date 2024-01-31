@@ -107,18 +107,29 @@ class Variable(Expression, IMutable):
         idx = ctx.rand.randint(0, len(ctx.variables))
         self.name = f'x_{idx}'
 
-    @staticmethod
-    def random(ctx):
-        # count = ctx.variable_count
-        count = len(ctx.variables)
-        if count == 0:
-            return None
-        idx = ctx.rand.randint(0, ctx.variable_count - 1)
-        return Variable(idx)
+    # @staticmethod
+    # def random(ctx):
+    #     # count = ctx.variable_count
+    #     count = len(ctx.variables)
+    #     if count == 0:
+    #         return None
+    #     idx = ctx.rand.randint(0, ctx.variable_count - 1)
+    #     return Variable(idx)
+    #
+    # @staticmethod
+    # def random_or_new(ctx):
+    #     # count = ctx.variable_count
+    #     count = len(ctx.variables)
+    #     idx = ctx.rand.randint(-1, count)
+    #     return Variable(idx) if idx >= 0 else Variable(count)
 
     @staticmethod
     def random_or_new(ctx):
-        # count = ctx.variable_count
-        count = len(ctx.variables)
-        idx = ctx.rand.randint(-1, count)
-        return Variable(idx) if idx >= 0 else Variable(count)
+        if len(ctx.variables) == 0:
+            return Variable(0)
+        if ctx.rand.choice([True, False]):
+            # new variable
+            return Variable(len(ctx.variables))
+        # random variable
+        idx = ctx.rand.randint(0, len(ctx.variables) - 1)
+        return Variable(idx)
