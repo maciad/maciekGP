@@ -88,6 +88,7 @@ class Program(Node, IMutable, IGrowable):
 
     def full_grow(self):
         while self.get_depth() < self.config.max_depth:
+            print(self.get_depth())
             self.grow()
         for statement in self.statements:
             statement.full_grow(self, self.config.max_depth - 1)
@@ -112,7 +113,10 @@ class Program(Node, IMutable, IGrowable):
         if isinstance(ctx_or_t, Program):
             node = self.children[self.rand.randint(0, len(self.children) - 1)]
             self.children.remove(node)
-            self.children.insert(self.rand.randint(0, len(self.children) - 1), node)
+            if not self.children:
+                self.children.append(node)
+            else:
+                self.children.insert(self.rand.randint(0, len(self.children) - 1), node)
             return
 
         elif isinstance(ctx_or_t, type):
@@ -130,3 +134,7 @@ class Program(Node, IMutable, IGrowable):
 
     def can_be_mutated(self):
         return len(self.mutables) > 0
+
+    def save_to_file(self, filename):
+        with open(filename, 'w') as file:
+            file.write(str(self))

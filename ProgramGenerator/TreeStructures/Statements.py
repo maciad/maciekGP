@@ -79,10 +79,16 @@ class BlockStatement(Statement, IMutable, IGrowable):
         exp_type = random.random()
         if exp_type < ctx.config.mutation_remove_chance:
             if self.statements:
-                self.statements.pop(ctx.rand.choice(len(self.statements)))
+                # self.statements.pop(ctx.rand.choice(len(self.statements)))
+                self.statements.pop(ctx.rand.randint(0, len(self.statements) - 1))
         else:
-            n = self.children.pop(ctx.rand.choice(len(self.children)))
-            self.children.insert(ctx.rand.choice(len(self.children)), n)
+            # n = self.children.pop(ctx.rand.choice(len(self.children)))
+            # self.children.insert(ctx.rand.choice(len(self.children)), n)
+            n = self.children.pop(ctx.rand.randint(0, len(self.children) - 1))
+            if not self.children:
+                self.children.append(n)
+            else:
+                self.children.insert(ctx.rand.randint(0, len(self.children) - 1), n)
 
 
 class LoopStatement(Statement):

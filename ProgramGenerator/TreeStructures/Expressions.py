@@ -128,7 +128,7 @@ class Variable(Expression, IMutable):
         if ctx.variable_counter == 0:
             ctx.variable_counter += 1
             return Variable(0)
-        if ctx.rand.choice([True, False]):
+        if ctx.rand.randint(0, 9) < 3:
             # new variable
             var = Variable(ctx.variable_counter)
             ctx.variable_counter += 1

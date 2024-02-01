@@ -1,9 +1,10 @@
 import random
 
 from ProgramGenerator.TreeStructures.Expressions import Variable, Constant, Read, NestedExpression
+from ProgramGenerator.TreeStructures.Operator import Operator
 from ProgramGenerator.TreeStructures.Statements import Assignment, LoopStatement, IfStatement, Print, BlockStatement
 from ProgramGenerator.TreeStructures.Program import Program
-from ProgramGenerator.TreeStructures.Comparator import Condition
+from ProgramGenerator.TreeStructures.Comparator import Condition, Comparator
 
 
 class TreeConfig:
@@ -248,6 +249,19 @@ class TreeConfig:
             return BlockStatement
         raise Exception('Invalid type')
 
+    def type_to_mutate(self):
+        chance = self.r.random()
+        if chance < self.mutate_program_chance:
+            return Program
+        elif chance < self.mutate_variable_chance:
+            return Variable
+        elif chance < self.mutate_constant_chance:
+            return Constant
+        elif chance < self.mutate_comparator_chance:
+            return Comparator
+        elif chance < self.mutate_operator_chance:
+            return Operator
+        return BlockStatement
 
 
 
