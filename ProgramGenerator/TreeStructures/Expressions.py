@@ -126,13 +126,20 @@ class Variable(Expression, IMutable):
     @staticmethod
     def random_or_new(ctx):
         if ctx.variable_counter == 0:
-            ctx.variable_counter += 1
-            return Variable(0)
+            return Variable.new_variable(ctx)
+        # new variable
         if ctx.rand.randint(0, 9) < 3:
-            # new variable
-            var = Variable(ctx.variable_counter)
-            ctx.variable_counter += 1
-            return var
+            return Variable.new_variable(ctx)
         # random variable
+        return Variable.random_variable(ctx)
+
+    @staticmethod
+    def new_variable(ctx):
+        var = Variable(ctx.variable_counter)
+        ctx.variable_counter += 1
+        return var
+
+    @staticmethod
+    def random_variable(ctx):
         idx = ctx.rand.randint(0, ctx.variable_counter - 1)
         return Variable(idx)

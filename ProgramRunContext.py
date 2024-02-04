@@ -14,12 +14,13 @@ class ProgramRunContext:
         self.input_copy = []
         self.output = []
         self.variables = {}
+        self.assigned_variables = set()
         self.elapsed_milliseconds = -1
         self.elapsed_ticks = -1
         self.random = random.Random()
         self.actions = 0
         self.executed_actions = 0
-        self.max_executed_actions = -1
+        self.max_executed_actions = 1000
 
     strategy = Strategy.INPUT_OR_ZERO
 

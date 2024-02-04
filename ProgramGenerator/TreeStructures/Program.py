@@ -50,7 +50,8 @@ class Program(Node, IMutable, IGrowable):
             for statement in self.statements:
                 statement.invoke(prc)
         except Exception as e:
-            print(e)
+            # print(e)
+            pass
 
         end_time = datetime.now()
         elapsed_time = (end_time - start_time).total_seconds() * 1000

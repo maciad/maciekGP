@@ -10,9 +10,6 @@ from Crossover import Crossover
 
 
 def main():
-    prc = ProgramRunContext()
-    prc.input = [7, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-    prc.max_executed_actions = 1000
 
 # READING PROGRAM FROM FILE
     # lexer = maciekGPLexer(FileStream("grammar/examples/max_number.txt"))
@@ -48,8 +45,15 @@ def main():
     # print(p3)
     # print(p4)
 
-    test_set = TestSetsGenerator.generate_1_1_A()
-    Evolution.perform_evolution(test_set)
+    test_set = TestSetsGenerator.generate_1_3_A()
+    best_program = Evolution.perform_evolution(test_set, population_size=2500, program_size=25, max_generations=150)
+
+    # print(best_program)
+    prc = ProgramRunContext()
+    prc.input = [3, 8]
+    print(prc.input)
+    best_program.invoke(prc)
+    print(prc.get_output())
 
 
 

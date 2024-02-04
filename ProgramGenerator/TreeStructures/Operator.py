@@ -24,7 +24,8 @@ class Operator(Node, IMutable):
         elif self.operator == '*':
             return value1 * value2
         elif self.operator == '%':
-            return value1 % value2
+            # return value1 % value2
+            return value1 % value2 if value2 != 0 else value1
         elif self.operator == '/':
             if value2 < 0.00001:
                 return value1

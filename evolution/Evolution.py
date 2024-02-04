@@ -12,13 +12,13 @@ from Crossover import Crossover
 
 class Evolution:
     random = Random()
-    POPULATION_SIZE = 1000
+    # POPULATION_SIZE = 500
 
     @staticmethod
-    def perform_evolution(test_set, max_generations=50):
+    def perform_evolution(test_set, max_generations=150, population_size=500, program_size=25):
         max_execution_time = test_set.config.max_execution_time
         # start_time = datetime.now()
-        print("starting evolution for test set:" + test_set.name)
+        print("STARTING EVOLUTION FOR TEST SET:" + test_set.name)
 
         # eh = EvolutionHistory()
         current_generation_index = 1
@@ -26,28 +26,34 @@ class Evolution:
         # create initial population
         # generation = Generation()
         population = []
-        for i in range(Evolution.POPULATION_SIZE):
-            population.append(generate_program_node_count(12))  # TODO: change to config
+        for i in range(population_size):
+            population.append(generate_program_node_count(program_size))  # TODO: change to config
 
         # evaluate initial population
         evaluated_population = Evolution.evaluate_population(population, test_set, test_set.grading_function, test_set.config.max_execution_time)
 
         while current_generation_index < max_generations:
+            # for program in population:
+            #     print(program)
             # best_fitness = min(evaluated_population.values())
             # best_program = list(evaluated_population.keys())[list(evaluated_population.values()).index(best_fitness)]
             best_program, best_fitness = min(evaluated_population.items(), key=operator.itemgetter(1))
             avg_fitness = sum(evaluated_population.values()) / len(evaluated_population)
-            print("Generation: " + str(current_generation_index) + " best fitness: " + str(best_fitness), "avg fitness: " + str(avg_fitness))
+            avg_size = sum([len(program.nodes) for program in population]) / len(population)
+            print("================================================================================================================================================================================================")
+            print("GENERATION: " + str(current_generation_index) + " BEST FITNESS: " + str(best_fitness), "AVG FITNESS: " + str(avg_fitness), "AVG SIZE: " + str(avg_size))
+            print(best_program)
             if best_fitness <= test_set.threshold:
+                # print("Generation: " + str(current_generation_index) + " best fitness: " + str(best_fitness), "avg fitness: " + str(avg_fitness))
                 break
 
             new_population = []
             # add 5% of the best programs to the new population
             best_programs = sorted(evaluated_population, key=evaluated_population.get)
-            for i in range(int(Evolution.POPULATION_SIZE * 0.05)):
+            for i in range(int(population_size * 0.05)):
                 new_population.append(best_programs[i])
 
-            while len(new_population) < Evolution.POPULATION_SIZE:
+            while len(new_population) < population_size:
                 # mutation
                 if Evolution.random.random() < test_set.config.mutation_chance:
                     program = Evolution.random.choice(population)
@@ -57,6 +63,7 @@ class Evolution:
                     type_to_mutate = type(Evolution.random.choice(new_program.mutables))
                     new_program.mutate(type_to_mutate)
                     new_population.append(new_program)
+                    # print("MUTATION")
                 # crossover
                 else:
                     success = False
@@ -69,6 +76,7 @@ class Evolution:
                                 new_population.append(new_program_1)
                                 new_population.append(new_program_2)
                                 success = True
+                                # print("CROSSOVER")
 
             population = new_population
             current_generation_index += 1
@@ -77,10 +85,9 @@ class Evolution:
             evaluated_population = Evolution.evaluate_population(population, test_set, test_set.grading_function, test_set.config.max_execution_time)
             best_program, best_fitness = min(evaluated_population.items(), key=operator.itemgetter(1))
             avg_fitness = sum(evaluated_population.values()) / len(evaluated_population)
-            print("================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================")
-            print("Generation: " + str(current_generation_index) + " best fitness: " + str(best_fitness), "avg fitness: " + str(avg_fitness))
 
-        print(best_program)
+        print()
+        # print(best_program)
         return best_program
 
     @staticmethod

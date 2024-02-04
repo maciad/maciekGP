@@ -57,7 +57,7 @@ class Crossover:
             p2_matching_nodes = [node for node in p2_nodes if isinstance(node, type_to_cross)]
 
         if len(p1_matching_nodes) == 0 or len(p2_matching_nodes) == 0:
-            print('failed to cross nodes')
+            # print('failed to cross nodes')
             return None, None
 
         p1_node = random.choice(p1_matching_nodes)
@@ -65,7 +65,7 @@ class Crossover:
         p2_node = Crossover.get_p2_node_by_probability(p2_matching_nodes, p1_node_depth)
         if p2_node:
             Node.cross_nodes(p1_node, p2_node)
-            print('crossed nodes', type_to_cross)
+            # print('crossed nodes', type_to_cross)
             return p1_copy, p2_copy
         raise Exception('failed to cross nodes')
 

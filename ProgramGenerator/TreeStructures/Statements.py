@@ -104,7 +104,9 @@ class LoopStatement(Statement):
     def new_loop(ctx):
         if ctx.rand.choice([True, False]):
             return LoopStatement(Constant.new_constant(ctx), BlockStatement())
-        return LoopStatement(Variable.random_or_new(ctx), BlockStatement())
+        if ctx.variable_counter == 0:
+            return LoopStatement(Constant.new_constant(ctx), BlockStatement())
+        return LoopStatement(Variable.random_variable(ctx), BlockStatement())
 
     # def invoke(self, prc):
     #     prc.increment_execution_time()
@@ -136,7 +138,8 @@ class Assignment(Statement, IGrowable):
 
     @staticmethod
     def new_assignment(ctx):
-        return Assignment(Variable.random_or_new(ctx), Expression.new_expression(ctx))
+        expression = Expression.new_expression(ctx)
+        return Assignment(Variable.random_or_new(ctx), expression)
 
     def invoke(self, prc):
         prc.increment_execution_time()
