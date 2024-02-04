@@ -88,10 +88,10 @@ class Program(Node, IMutable, IGrowable):
 
     def full_grow(self):
         while self.get_depth() < self.config.max_depth:
-            print(self.get_depth())
+            # print(self.get_depth(), self.config.max_depth)
+            for statement in self.statements:
+                statement.full_grow(self, self.config.max_depth - 1)
             self.grow()
-        for statement in self.statements:
-            statement.full_grow(self, self.config.max_depth - 1)
 
     # def mutate(self, t):
     #     x = self.mutables

@@ -55,8 +55,13 @@ class BlockStatement(Statement, IMutable, IGrowable):
 
     def grow_self_or_children(self, ctx):
         growables = self.growables
+        if not growables:
+            self.add(random.choice([Assignment.new_assignment(ctx), Print.new_print(ctx)])) # troche oszukane xdd
+            self.update_parents()
+            return
         for _ in range(10):
-            t = ctx.config.type_to_grow()               # TODO: update methods ?
+            # TODO: update methods ?
+            t = ctx.config.type_to_grow()
             growables_ = [x for x in growables if isinstance(x, t)]
             if growables_:
                 growables_[ctx.rand.randint(0, len(growables_) - 1)].grow(ctx)
@@ -64,7 +69,6 @@ class BlockStatement(Statement, IMutable, IGrowable):
                 return
         if growables:
             growables[ctx.rand.randint(0, len(growables) - 1)].grow(ctx)
-
         self.update_parents()
 
     def full_grow(self, ctx, target_depth):

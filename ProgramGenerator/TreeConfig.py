@@ -8,7 +8,7 @@ from ProgramGenerator.TreeStructures.Comparator import Condition, Comparator
 
 
 class TreeConfig:
-    def __init__(self, max_execution_time=1000, min_node_count=15, max_depth=8):
+    def __init__(self, max_execution_time=1000, min_node_count=15, max_depth=6):
         # # Tree Basic Data
         self.max_execution_time = max_execution_time
         self.min_node_count = min_node_count
@@ -37,7 +37,7 @@ class TreeConfig:
         self.grow_block_statement_chance_factor = 5
 
         # Tree Evolution Data
-        self.mutation_chance = 0.1
+        self.mutation_chance = 0.3
         self.mutate_program_factor = 0.5
         self.mutate_variable_factor = 0.5
         self.mutate_constant_factor = 0.5
@@ -52,12 +52,12 @@ class TreeConfig:
         self.crossover_if_factor = 25
         self.crossover_print_factor = 0
         self.crossover_assignment_factor = 25
-        self.cross_over_variable_factor = 0
-        self.cross_over_constant_factor = 0
-        self.cross_over_nested_expression_factor = 25
-        self.cross_over_comparator_factor = 0
-        self.cross_over_operator_factor = 0
-        self.cross_over_block_statement_factor = 0
+        self.crossover_variable_factor = 0
+        self.crossover_constant_factor = 0
+        self.crossover_nested_expression_factor = 25
+        self.crossover_comparator_factor = 0
+        self.crossover_operator_factor = 0
+        self.crossover_block_statement_factor = 0
 
         # New Generation Data
         self.copied_trees_factor = 5
@@ -98,12 +98,12 @@ class TreeConfig:
         self.crossover_if_chance = 0
         self.crossover_print_chance = 0
         self.crossover_assignment_chance = 0
-        self.cross_over_variable_chance = 0
-        self.cross_over_constant_chance = 0
-        self.cross_over_nested_expression_chance = 0
-        self.cross_over_comparator_chance = 0
-        self.cross_over_operator_chance = 0
-        self.cross_over_block_statement_chance = 0
+        self.crossover_variable_chance = 0
+        self.crossover_constant_chance = 0
+        self.crossover_nested_expression_chance = 0
+        self.crossover_comparator_chance = 0
+        self.crossover_operator_chance = 0
+        self.crossover_block_statement_chance = 0
 
         # Initialize random seed
         self.r = random.Random()
@@ -189,12 +189,12 @@ class TreeConfig:
             self.crossover_if_factor +
             self.crossover_print_factor +
             self.crossover_assignment_factor +
-            self.cross_over_variable_factor +
-            self.cross_over_constant_factor +
-            self.cross_over_nested_expression_factor +
-            self.cross_over_comparator_factor +
-            self.cross_over_operator_factor +
-            self.cross_over_block_statement_factor
+            self.crossover_variable_factor +
+            self.crossover_constant_factor +
+            self.crossover_nested_expression_factor +
+            self.crossover_comparator_factor +
+            self.crossover_operator_factor +
+            self.crossover_block_statement_factor
         )
 
         # Calculate chances and offset them
@@ -202,12 +202,12 @@ class TreeConfig:
         self.crossover_if_chance = (self.crossover_if_factor / sum_chances) + self.crossover_loop_chance
         self.crossover_print_chance = (self.crossover_print_factor / sum_chances) + self.crossover_if_chance
         self.crossover_assignment_chance = (self.crossover_assignment_factor / sum_chances) + self.crossover_print_chance
-        self.cross_over_variable_chance = (self.cross_over_variable_factor / sum_chances) + self.crossover_assignment_chance
-        self.cross_over_constant_chance = (self.cross_over_constant_factor / sum_chances) + self.cross_over_variable_chance
-        self.cross_over_nested_expression_chance = (self.cross_over_nested_expression_factor / sum_chances) + self.cross_over_constant_chance
-        self.cross_over_comparator_chance = (self.cross_over_comparator_factor / sum_chances) + self.cross_over_nested_expression_chance
-        self.cross_over_operator_chance = (self.cross_over_operator_factor / sum_chances) + self.cross_over_comparator_chance
-        self.cross_over_block_statement_chance = (self.cross_over_block_statement_factor / sum_chances) + self.cross_over_operator_chance
+        self.crossover_variable_chance = (self.crossover_variable_factor / sum_chances) + self.crossover_assignment_chance
+        self.crossover_constant_chance = (self.crossover_constant_factor / sum_chances) + self.crossover_variable_chance
+        self.crossover_nested_expression_chance = (self.crossover_nested_expression_factor / sum_chances) + self.crossover_constant_chance
+        self.crossover_comparator_chance = (self.crossover_comparator_factor / sum_chances) + self.crossover_nested_expression_chance
+        self.crossover_operator_chance = (self.crossover_operator_factor / sum_chances) + self.crossover_comparator_chance
+        self.crossover_block_statement_chance = (self.crossover_block_statement_factor / sum_chances) + self.crossover_operator_chance
 
     def statement_to_create(self, program):
         chance = self.r.random()

@@ -43,7 +43,8 @@ class Node:
     #     return 1
 
     def get_depth(self):
-        if self.children:
+        # print("get_depth", self, self.children)
+        if len(self.children) > 0 and self.children is not None:
             # Dodano warunek, aby sprawdzić, czy element jest obiektem typu Node
             children_depths = [n.get_depth() for n in self.children if isinstance(n, Node)]
             return max(children_depths, default=0) + 1
