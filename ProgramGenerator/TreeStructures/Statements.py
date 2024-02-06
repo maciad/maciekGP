@@ -128,7 +128,7 @@ class LoopStatement(Statement):
 
     def __str__(self):
         self.update_indent()
-        return "loop " + str(self.children[0]) + ":\n" + str(self.children[1])
+        return "loop " + str(self.children[0]) + "\n" + str(self.children[1])
 
 
 class Assignment(Statement, IGrowable):
@@ -201,10 +201,10 @@ class IfStatement(Statement):
 
     def __str__(self):
         self.update_indent()
-        s = 'if ' + str(self.children[0]) + ':\n'
+        s = 'if ' + str(self.children[0]) + '\n'
         s += str(self.children[1])
         if len(self.children) == 3:
-            s += 'else:\n'
+            s += 'else\n'
             s += str(self.children[2])
         return s
 

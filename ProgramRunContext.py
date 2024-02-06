@@ -59,7 +59,7 @@ class ProgramRunContext:
         return result      # should never happen
 
     def push(self, value):
-        self.output.append(int(value))
+        self.output.append(float(value))
 
     def __str__(self):
         result = "Input: " + ", ".join(map(str, self.input)) + "\nOutput: " + ", ".join(map(str, self.output)) + "\nVariables: " + ", ".join(

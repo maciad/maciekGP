@@ -10,37 +10,37 @@ else:
 
 def serializedATN():
     return [
-        4,1,25,104,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,25,105,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,1,0,4,0,32,8,0,11,0,12,0,33,1,0,1,0,1,1,1,1,1,1,1,1,3,
         1,42,8,1,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,55,8,3,
-        1,4,1,4,1,4,1,4,1,5,1,5,4,5,63,8,5,11,5,12,5,64,1,5,1,5,1,6,1,6,
-        1,6,3,6,72,8,6,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,8,1,8,1,8,1,8,3,8,85,
-        8,8,1,9,1,9,1,9,1,9,1,9,1,9,1,10,1,10,1,11,1,11,1,12,1,12,1,13,1,
-        13,1,14,1,14,1,14,1,14,0,0,15,0,2,4,6,8,10,12,14,16,18,20,22,24,
-        26,28,0,2,1,0,11,15,1,0,16,21,98,0,31,1,0,0,0,2,41,1,0,0,0,4,43,
-        1,0,0,0,6,47,1,0,0,0,8,56,1,0,0,0,10,60,1,0,0,0,12,68,1,0,0,0,14,
-        75,1,0,0,0,16,84,1,0,0,0,18,86,1,0,0,0,20,92,1,0,0,0,22,94,1,0,0,
-        0,24,96,1,0,0,0,26,98,1,0,0,0,28,100,1,0,0,0,30,32,3,2,1,0,31,30,
-        1,0,0,0,32,33,1,0,0,0,33,31,1,0,0,0,33,34,1,0,0,0,34,35,1,0,0,0,
-        35,36,5,0,0,1,36,1,1,0,0,0,37,42,3,4,2,0,38,42,3,6,3,0,39,42,3,12,
-        6,0,40,42,3,14,7,0,41,37,1,0,0,0,41,38,1,0,0,0,41,39,1,0,0,0,41,
-        40,1,0,0,0,42,3,1,0,0,0,43,44,3,28,14,0,44,45,5,1,0,0,45,46,3,16,
-        8,0,46,5,1,0,0,0,47,48,5,2,0,0,48,49,5,3,0,0,49,50,3,8,4,0,50,51,
-        5,4,0,0,51,54,3,10,5,0,52,53,5,5,0,0,53,55,3,10,5,0,54,52,1,0,0,
-        0,54,55,1,0,0,0,55,7,1,0,0,0,56,57,3,16,8,0,57,58,3,24,12,0,58,59,
-        3,16,8,0,59,9,1,0,0,0,60,62,5,6,0,0,61,63,3,2,1,0,62,61,1,0,0,0,
-        63,64,1,0,0,0,64,62,1,0,0,0,64,65,1,0,0,0,65,66,1,0,0,0,66,67,5,
-        7,0,0,67,11,1,0,0,0,68,71,5,8,0,0,69,72,3,26,13,0,70,72,3,28,14,
-        0,71,69,1,0,0,0,71,70,1,0,0,0,72,73,1,0,0,0,73,74,3,10,5,0,74,13,
-        1,0,0,0,75,76,5,9,0,0,76,77,5,3,0,0,77,78,3,16,8,0,78,79,5,4,0,0,
-        79,15,1,0,0,0,80,85,3,26,13,0,81,85,3,28,14,0,82,85,3,18,9,0,83,
-        85,3,20,10,0,84,80,1,0,0,0,84,81,1,0,0,0,84,82,1,0,0,0,84,83,1,0,
-        0,0,85,17,1,0,0,0,86,87,5,3,0,0,87,88,3,16,8,0,88,89,3,22,11,0,89,
-        90,3,16,8,0,90,91,5,4,0,0,91,19,1,0,0,0,92,93,5,10,0,0,93,21,1,0,
-        0,0,94,95,7,0,0,0,95,23,1,0,0,0,96,97,7,1,0,0,97,25,1,0,0,0,98,99,
-        5,25,0,0,99,27,1,0,0,0,100,101,5,22,0,0,101,102,5,25,0,0,102,29,
-        1,0,0,0,6,33,41,54,64,71,84
+        1,4,1,4,1,4,1,4,1,5,1,5,5,5,63,8,5,10,5,12,5,66,9,5,1,5,1,5,1,6,
+        1,6,1,6,3,6,73,8,6,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,8,1,8,1,8,1,8,3,
+        8,86,8,8,1,9,1,9,1,9,1,9,1,9,1,9,1,10,1,10,1,11,1,11,1,12,1,12,1,
+        13,1,13,1,14,1,14,1,14,1,14,0,0,15,0,2,4,6,8,10,12,14,16,18,20,22,
+        24,26,28,0,2,1,0,11,15,1,0,16,21,99,0,31,1,0,0,0,2,41,1,0,0,0,4,
+        43,1,0,0,0,6,47,1,0,0,0,8,56,1,0,0,0,10,60,1,0,0,0,12,69,1,0,0,0,
+        14,76,1,0,0,0,16,85,1,0,0,0,18,87,1,0,0,0,20,93,1,0,0,0,22,95,1,
+        0,0,0,24,97,1,0,0,0,26,99,1,0,0,0,28,101,1,0,0,0,30,32,3,2,1,0,31,
+        30,1,0,0,0,32,33,1,0,0,0,33,31,1,0,0,0,33,34,1,0,0,0,34,35,1,0,0,
+        0,35,36,5,0,0,1,36,1,1,0,0,0,37,42,3,4,2,0,38,42,3,6,3,0,39,42,3,
+        12,6,0,40,42,3,14,7,0,41,37,1,0,0,0,41,38,1,0,0,0,41,39,1,0,0,0,
+        41,40,1,0,0,0,42,3,1,0,0,0,43,44,3,28,14,0,44,45,5,1,0,0,45,46,3,
+        16,8,0,46,5,1,0,0,0,47,48,5,2,0,0,48,49,5,3,0,0,49,50,3,8,4,0,50,
+        51,5,4,0,0,51,54,3,10,5,0,52,53,5,5,0,0,53,55,3,10,5,0,54,52,1,0,
+        0,0,54,55,1,0,0,0,55,7,1,0,0,0,56,57,3,16,8,0,57,58,3,24,12,0,58,
+        59,3,16,8,0,59,9,1,0,0,0,60,64,5,6,0,0,61,63,3,2,1,0,62,61,1,0,0,
+        0,63,66,1,0,0,0,64,62,1,0,0,0,64,65,1,0,0,0,65,67,1,0,0,0,66,64,
+        1,0,0,0,67,68,5,7,0,0,68,11,1,0,0,0,69,72,5,8,0,0,70,73,3,26,13,
+        0,71,73,3,28,14,0,72,70,1,0,0,0,72,71,1,0,0,0,73,74,1,0,0,0,74,75,
+        3,10,5,0,75,13,1,0,0,0,76,77,5,9,0,0,77,78,5,3,0,0,78,79,3,16,8,
+        0,79,80,5,4,0,0,80,15,1,0,0,0,81,86,3,26,13,0,82,86,3,28,14,0,83,
+        86,3,18,9,0,84,86,3,20,10,0,85,81,1,0,0,0,85,82,1,0,0,0,85,83,1,
+        0,0,0,85,84,1,0,0,0,86,17,1,0,0,0,87,88,5,3,0,0,88,89,3,16,8,0,89,
+        90,3,22,11,0,90,91,3,16,8,0,91,92,5,4,0,0,92,19,1,0,0,0,93,94,5,
+        10,0,0,94,21,1,0,0,0,95,96,7,0,0,0,96,23,1,0,0,0,97,98,7,1,0,0,98,
+        25,1,0,0,0,99,100,5,25,0,0,100,27,1,0,0,0,101,102,5,22,0,0,102,103,
+        5,25,0,0,103,29,1,0,0,0,6,33,41,54,64,72,85
     ]
 
 class maciekGPParser ( Parser ):
@@ -505,19 +505,17 @@ class maciekGPParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 60
             self.match(maciekGPParser.T__5)
-            self.state = 62 
+            self.state = 64
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while True:
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 4195076) != 0):
                 self.state = 61
                 self.statement()
-                self.state = 64 
+                self.state = 66
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 4195076) != 0)):
-                    break
 
-            self.state = 66
+            self.state = 67
             self.match(maciekGPParser.T__6)
         except RecognitionException as re:
             localctx.exception = re
@@ -573,23 +571,23 @@ class maciekGPParser ( Parser ):
         self.enterRule(localctx, 12, self.RULE_loopStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 68
+            self.state = 69
             self.match(maciekGPParser.T__7)
-            self.state = 71
+            self.state = 72
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [25]:
-                self.state = 69
+                self.state = 70
                 self.constant()
                 pass
             elif token in [22]:
-                self.state = 70
+                self.state = 71
                 self.variable()
                 pass
             else:
                 raise NoViableAltException(self)
 
-            self.state = 73
+            self.state = 74
             self.blockStatement()
         except RecognitionException as re:
             localctx.exception = re
@@ -637,13 +635,13 @@ class maciekGPParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_print)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 75
-            self.match(maciekGPParser.T__8)
             self.state = 76
-            self.match(maciekGPParser.T__2)
+            self.match(maciekGPParser.T__8)
             self.state = 77
-            self.expression()
+            self.match(maciekGPParser.T__2)
             self.state = 78
+            self.expression()
+            self.state = 79
             self.match(maciekGPParser.T__3)
         except RecognitionException as re:
             localctx.exception = re
@@ -702,27 +700,27 @@ class maciekGPParser ( Parser ):
         localctx = maciekGPParser.ExpressionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 16, self.RULE_expression)
         try:
-            self.state = 84
+            self.state = 85
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [25]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 80
+                self.state = 81
                 self.constant()
                 pass
             elif token in [22]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 81
+                self.state = 82
                 self.variable()
                 pass
             elif token in [3]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 82
+                self.state = 83
                 self.nestedExpression()
                 pass
             elif token in [10]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 83
+                self.state = 84
                 self.read()
                 pass
             else:
@@ -781,15 +779,15 @@ class maciekGPParser ( Parser ):
         self.enterRule(localctx, 18, self.RULE_nestedExpression)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 86
-            self.match(maciekGPParser.T__2)
             self.state = 87
-            self.expression()
+            self.match(maciekGPParser.T__2)
             self.state = 88
-            self.operator()
-            self.state = 89
             self.expression()
+            self.state = 89
+            self.operator()
             self.state = 90
+            self.expression()
+            self.state = 91
             self.match(maciekGPParser.T__3)
         except RecognitionException as re:
             localctx.exception = re
@@ -834,7 +832,7 @@ class maciekGPParser ( Parser ):
         self.enterRule(localctx, 20, self.RULE_read)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 92
+            self.state = 93
             self.match(maciekGPParser.T__9)
         except RecognitionException as re:
             localctx.exception = re
@@ -880,7 +878,7 @@ class maciekGPParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 94
+            self.state = 95
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 63488) != 0)):
                 self._errHandler.recoverInline(self)
@@ -931,7 +929,7 @@ class maciekGPParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 96
+            self.state = 97
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 4128768) != 0)):
                 self._errHandler.recoverInline(self)
@@ -983,7 +981,7 @@ class maciekGPParser ( Parser ):
         self.enterRule(localctx, 26, self.RULE_constant)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 98
+            self.state = 99
             self.match(maciekGPParser.INT)
         except RecognitionException as re:
             localctx.exception = re
@@ -1030,9 +1028,9 @@ class maciekGPParser ( Parser ):
         self.enterRule(localctx, 28, self.RULE_variable)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 100
-            self.match(maciekGPParser.T__21)
             self.state = 101
+            self.match(maciekGPParser.T__21)
+            self.state = 102
             self.match(maciekGPParser.INT)
         except RecognitionException as re:
             localctx.exception = re

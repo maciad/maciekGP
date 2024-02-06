@@ -15,7 +15,7 @@ class Evolution:
     # POPULATION_SIZE = 500
 
     @staticmethod
-    def perform_evolution(test_set, max_generations=150, population_size=500, program_size=25):
+    def perform_evolution(test_set, max_generations=150, population_size=500, program_size=15):
         max_execution_time = test_set.config.max_execution_time
         # start_time = datetime.now()
         print("STARTING EVOLUTION FOR TEST SET:" + test_set.name)
@@ -41,7 +41,7 @@ class Evolution:
             avg_fitness = sum(evaluated_population.values()) / len(evaluated_population)
             avg_size = sum([len(program.nodes) for program in population]) / len(population)
             print("================================================================================================================================================================================================")
-            print("GENERATION: " + str(current_generation_index) + " BEST FITNESS: " + str(best_fitness), "AVG FITNESS: " + str(avg_fitness), "AVG SIZE: " + str(avg_size))
+            print("GENERATION: " + str(current_generation_index) + "\nBEST FITNESS: " + str(best_fitness), "\nAVG FITNESS: " + str(avg_fitness), "\nAVG SIZE: " + str(avg_size) + '\n')
             print(best_program)
             if best_fitness <= test_set.threshold:
                 # print("Generation: " + str(current_generation_index) + " best fitness: " + str(best_fitness), "avg fitness: " + str(avg_fitness))

@@ -68,14 +68,14 @@ class Constant(Expression, IMutable):
 
     def mutate(self, ctx):
         # TODO: change values after adding configuration file
-        self.value = ctx.rand.randint(0, 10)
+        self.value = ctx.rand.randint(0, 25)
 
     def __str__(self):
         return str(self.value)
 
     @staticmethod
     def new_constant(ctx):
-        return Constant(ctx.rand.randint(0, 10))
+        return Constant(ctx.rand.randint(0, 25))
 
 
 class Read(Expression):

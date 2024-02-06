@@ -45,16 +45,15 @@ def main():
     # print(p3)
     # print(p4)
 
-    test_set = TestSetsGenerator.generate_1_3_A()
-    best_program = Evolution.perform_evolution(test_set, population_size=2500, program_size=25, max_generations=150)
+    test_set = TestSetsGenerator.generate_1_1_D()
+    best_program = Evolution.perform_evolution(test_set, population_size=1000, max_generations=200)
 
     # print(best_program)
     prc = ProgramRunContext()
-    prc.input = [3, 8]
+    prc.input = []
     print(prc.input)
     best_program.invoke(prc)
     print(prc.get_output())
-
 
 
 if __name__ == '__main__':

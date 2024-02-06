@@ -2,7 +2,7 @@ x_0 = read()
 
 x_1 = read()
 x_2 = x_1
-
+//x_2 - minimum
 x_3 = (x_0 - 1)
 loop x_3
 {
