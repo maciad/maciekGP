@@ -1,8 +1,6 @@
-from ProgramGenerator.TreeConfig import TreeConfig
 from ProgramGenerator.TreeStructures.Statements import *
 from ProgramGenerator.TreeStructures.Expressions import *
 from ProgramGenerator.TreeStructures.Comparator import *
-
 from copy import deepcopy
 import random
 
@@ -57,15 +55,14 @@ class Crossover:
             p2_matching_nodes = [node for node in p2_nodes if isinstance(node, type_to_cross)]
 
         if len(p1_matching_nodes) == 0 or len(p2_matching_nodes) == 0:
-            # print('failed to cross nodes')
             return None, None
 
         p1_node = random.choice(p1_matching_nodes)
         p1_node_depth = p1_node.get_depth()
         p2_node = Crossover.get_p2_node_by_probability(p2_matching_nodes, p1_node_depth)
+        # p2_node = Crossover.get_p2_node_random(p2_matching_nodes, p1_node_depth)
         if p2_node:
             Node.cross_nodes(p1_node, p2_node)
-            # print('crossed nodes', type_to_cross)
             return p1_copy, p2_copy
         raise Exception('failed to cross nodes')
 
@@ -101,8 +98,8 @@ class Crossover:
         return random.choice([k for k, v in nodes_depths.items() if v > p1_node_depth])
 
     @staticmethod
-    def get_p2_node_random(p2_matching_nodes , p1_node_depth):
-        pass
+    def get_p2_node_random(p2_matching_nodes, p1_node_depth):
+        return random.choice(p2_matching_nodes)
 
 
 

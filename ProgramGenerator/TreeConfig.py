@@ -1,8 +1,7 @@
 import random
-
-from ProgramGenerator.TreeStructures.Expressions import Variable, Constant, Read, NestedExpression
+from ProgramGenerator.TreeStructures.Expressions import Variable, Constant, NestedExpression
 from ProgramGenerator.TreeStructures.Operator import Operator
-from ProgramGenerator.TreeStructures.Statements import Assignment, LoopStatement, IfStatement, Print, BlockStatement
+from ProgramGenerator.TreeStructures.Statements import Assignment, IfStatement, Print, BlockStatement
 from ProgramGenerator.TreeStructures.Program import Program
 from ProgramGenerator.TreeStructures.Comparator import Condition, Comparator
 
@@ -58,14 +57,6 @@ class TreeConfig:
         self.crossover_comparator_factor = 0
         self.crossover_operator_factor = 0
         self.crossover_block_statement_factor = 0
-
-        # New Generation Data
-        self.copied_trees_factor = 5
-        self.new_trees_by_mutation_factor = 30
-        self.new_trees_by_crossover_factor = 45
-
-        # Run Data
-        self.max_operation_count = 1000
 
         # Precalculated Values
         self.new_assignment_chance = 0
@@ -209,28 +200,6 @@ class TreeConfig:
         self.crossover_operator_chance = (self.crossover_operator_factor / sum_chances) + self.crossover_comparator_chance
         self.crossover_block_statement_chance = (self.crossover_block_statement_factor / sum_chances) + self.crossover_operator_chance
 
-    def statement_to_create(self, program):
-        chance = self.r.random()
-        if chance < self.new_assignment_chance:
-            return Assignment.new_assignment(program)
-        elif chance < self.new_if_statement_chance:
-            return IfStatement.new_if_statement(program)
-        elif chance < self.new_loop_chance:
-            return LoopStatement.new_loop(program)
-        elif chance < self.new_print_chance:
-            return Print.new_print(program)
-        raise Exception('Invalid action')
-
-    def expression_to_create(self, program):
-        chance = self.r.random()
-        if chance < self.new_variable_chance:
-            return Variable.random_or_new(program)
-        elif chance < self.new_constant_chance:
-            return Constant.new_constant(program)
-        elif chance < self.new_read_chance:
-            return Read.new_read(program)
-        raise Exception('Invalid expression')
-
     def type_to_grow(self):
         chance = self.r.random()
         if chance < self.grow_program_chance:
@@ -262,6 +231,3 @@ class TreeConfig:
         elif chance < self.mutate_operator_chance:
             return Operator
         return BlockStatement
-
-
-

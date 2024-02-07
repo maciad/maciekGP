@@ -3,40 +3,27 @@ from ProgramRunContext import ProgramRunContext
 import math
 import operator
 from copy import deepcopy
-from datetime import datetime
-# from evolution.EvolutionHistory import EvolutionHistory, Generation
 from ProgramGenerator.TreeGenerator import *
-from Crossover import Crossover
-# from TestSets.gradingFunctions import GradingFunction
+from evolution.Crossover import Crossover
 
 
 class Evolution:
     random = Random()
-    # POPULATION_SIZE = 500
 
     @staticmethod
-    def perform_evolution(test_set, max_generations=150, population_size=500, program_size=15):
-        max_execution_time = test_set.config.max_execution_time
-        # start_time = datetime.now()
+    def perform_evolution(test_set, max_generations=150, population_size=1000, program_size=15):
+
         print("STARTING EVOLUTION FOR TEST SET:" + test_set.name)
 
-        # eh = EvolutionHistory()
         current_generation_index = 1
 
         # create initial population
-        # generation = Generation()
         population = []
         for i in range(population_size):
             population.append(generate_program_node_count(program_size))  # TODO: change to config
 
-        # evaluate initial population
-        evaluated_population = Evolution.evaluate_population(population, test_set, test_set.grading_function, test_set.config.max_execution_time)
-
         while current_generation_index < max_generations:
-            # for program in population:
-            #     print(program)
-            # best_fitness = min(evaluated_population.values())
-            # best_program = list(evaluated_population.keys())[list(evaluated_population.values()).index(best_fitness)]
+            evaluated_population = Evolution.evaluate_population(population, test_set, test_set.grading_function, test_set.config.max_execution_time)
             best_program, best_fitness = min(evaluated_population.items(), key=operator.itemgetter(1))
             avg_fitness = sum(evaluated_population.values()) / len(evaluated_population)
             avg_size = sum([len(program.nodes) for program in population]) / len(population)
@@ -44,7 +31,6 @@ class Evolution:
             print("GENERATION: " + str(current_generation_index) + "\nBEST FITNESS: " + str(best_fitness), "\nAVG FITNESS: " + str(avg_fitness), "\nAVG SIZE: " + str(avg_size) + '\n')
             print(best_program)
             if best_fitness <= test_set.threshold:
-                # print("Generation: " + str(current_generation_index) + " best fitness: " + str(best_fitness), "avg fitness: " + str(avg_fitness))
                 break
 
             new_population = []
@@ -59,11 +45,12 @@ class Evolution:
                     program = Evolution.random.choice(population)
                     while not program.can_be_mutated():
                         program = Evolution.random.choice(population)
-                    new_program = deepcopy(program)  # TODO: check for possible problems with deepcopy
+                    new_program = deepcopy(program)
                     type_to_mutate = type(Evolution.random.choice(new_program.mutables))
+                    while not new_program.has_node_of_type(type_to_mutate):
+                        type_to_mutate = type(Evolution.random.choice(new_program.mutables))
                     new_program.mutate(type_to_mutate)
                     new_population.append(new_program)
-                    # print("MUTATION")
                 # crossover
                 else:
                     success = False
@@ -76,18 +63,10 @@ class Evolution:
                                 new_population.append(new_program_1)
                                 new_population.append(new_program_2)
                                 success = True
-                                # print("CROSSOVER")
 
             population = new_population
             current_generation_index += 1
 
-            # evaluate new population
-            evaluated_population = Evolution.evaluate_population(population, test_set, test_set.grading_function, test_set.config.max_execution_time)
-            best_program, best_fitness = min(evaluated_population.items(), key=operator.itemgetter(1))
-            avg_fitness = sum(evaluated_population.values()) / len(evaluated_population)
-
-        print()
-        # print(best_program)
         return best_program
 
     @staticmethod
@@ -95,7 +74,9 @@ class Evolution:
         target = Evolution.random.choice(list(evaluated_population.keys()))
         for i in range(tournament_size - 1):
             competitor = Evolution.random.choice(list(evaluated_population.keys()))
-            if target == None or evaluated_population[competitor] < evaluated_population[target]:
+            while evaluated_population[competitor] == math.inf:
+                competitor = Evolution.random.choice(list(evaluated_population.keys()))
+            if target is None or evaluated_population[competitor] < evaluated_population[target]:
                 target = competitor
         return target
 

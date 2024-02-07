@@ -1,4 +1,3 @@
-import random
 from enum import Enum
 
 
@@ -14,11 +13,6 @@ class ProgramRunContext:
         self.input_copy = []
         self.output = []
         self.variables = {}
-        self.assigned_variables = set()
-        self.elapsed_milliseconds = -1
-        self.elapsed_ticks = -1
-        self.random = random.Random()
-        self.actions = 0
         self.executed_actions = 0
         self.max_executed_actions = 1000
 
@@ -65,13 +59,6 @@ class ProgramRunContext:
         result = "Input: " + ", ".join(map(str, self.input)) + "\nOutput: " + ", ".join(map(str, self.output)) + "\nVariables: " + ", ".join(
             [f"{key} = {value}" for key, value in self.variables.items()]
         )
-        return result
-
-    def to_string_tabbed(self, tab=1):
-        result = ""
-        t = "\t" * tab
-        for line in self.__str__().split("\n"):
-            result += t + line + "\n"
         return result
 
     def get_output(self):

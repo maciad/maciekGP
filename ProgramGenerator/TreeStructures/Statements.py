@@ -34,8 +34,6 @@ class BlockStatement(Statement, IMutable, IGrowable):
 
     def add(self, statement):
         self.children.append(statement)
-        # statement.parent = self
-        # statement.update_parents()
 
     def invoke(self, prc):
         prc.increment_execution_time()
@@ -56,7 +54,7 @@ class BlockStatement(Statement, IMutable, IGrowable):
     def grow_self_or_children(self, ctx):
         growables = self.growables
         if not growables:
-            self.add(random.choice([Assignment.new_assignment(ctx), Print.new_print(ctx)])) # troche oszukane xdd
+            self.add(random.choice([Assignment.new_assignment(ctx), Print.new_print(ctx)]))
             self.update_parents()
             return
         for _ in range(10):
@@ -83,11 +81,8 @@ class BlockStatement(Statement, IMutable, IGrowable):
         exp_type = random.random()
         if exp_type < ctx.config.mutation_remove_chance:
             if self.statements:
-                # self.statements.pop(ctx.rand.choice(len(self.statements)))
                 self.statements.pop(ctx.rand.randint(0, len(self.statements) - 1))
         else:
-            # n = self.children.pop(ctx.rand.choice(len(self.children)))
-            # self.children.insert(ctx.rand.choice(len(self.children)), n)
             n = self.children.pop(ctx.rand.randint(0, len(self.children) - 1))
             if not self.children:
                 self.children.append(n)
@@ -108,18 +103,12 @@ class LoopStatement(Statement):
             return LoopStatement(Constant.new_constant(ctx), BlockStatement())
         return LoopStatement(Variable.random_variable(ctx), BlockStatement())
 
-    # def invoke(self, prc):
-    #     prc.increment_execution_time()
-    #     for _ in range(self.children[0].evaluate(prc)):
-    #         self.children[1].invoke(prc)
-
     def invoke(self, prc):
         prc.increment_execution_time()
         if isinstance(self.children[0], Constant):
             repeat_times = self.children[0].value
         else:
             repeat_times = prc.variables.get(self.children[0].name)
-        # print(repeat_times, "SDFASDFASDF")
         for _ in range(repeat_times):
             self.children[1].invoke(prc)
 
@@ -143,7 +132,6 @@ class Assignment(Statement, IGrowable):
 
     def invoke(self, prc):
         prc.increment_execution_time()
-        # print(self.children[0].name, self.children[1].evaluate(prc))
         prc.variables[self.children[0].name] = self.children[1].evaluate(prc)
 
     def grow(self, ctx):
@@ -154,7 +142,7 @@ class Assignment(Statement, IGrowable):
             self.grow(ctx)
 
     def __str__(self):
-        # self.update_indent()
+        self.update_indent()
         return str(self.children[0]) + ' = ' + str(self.children[1])
 
 
@@ -169,9 +157,7 @@ class Print(Statement, IGrowable):
 
     def invoke(self, prc):
         prc.increment_execution_time()
-        # print(self.children[0].evaluate(prc))
         prc.push(self.children[0].evaluate(prc))
-        # print(prc.output)
 
     def __str__(self):
         return 'print(' + str(self.children[0]) + ')'

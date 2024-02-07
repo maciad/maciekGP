@@ -1,25 +1,29 @@
-from antlr4 import *
-from grammar.dist.maciekGPLexer import maciekGPLexer
-from ProgramGenerator.AntlrToProgram import *
-from ProgramGenerator.TreeGenerator import *
-from ProgramGenerator.TreeConfig import TreeConfig
+from antlr4 import CommonTokenStream, FileStream
+
+from ProgramGenerator.AntlrToProgram import AntlrToProgram
 from ProgramRunContext import ProgramRunContext
 from evolution.Evolution import Evolution
 from TestSets.TestSetsGenerator import TestSetsGenerator
-from Crossover import Crossover
+from grammar.dist.maciekGPLexer import maciekGPLexer
+from grammar.dist.maciekGPParser import maciekGPParser
 
+
+def read_program_from_file(filename):
+    lexer = maciekGPLexer(FileStream(filename))
+    stream = CommonTokenStream(lexer)
+    parser = maciekGPParser(stream)
+    tree = parser.program()
+    program = AntlrToProgram()
+    program = program.visit(tree)
+    return program
 
 def main():
-
 # READING PROGRAM FROM FILE
-    # lexer = maciekGPLexer(FileStream("grammar/examples/max_number.txt"))
-    # stream = CommonTokenStream(lexer)
-    # parser = maciekGPParser(stream)
-    # tree = parser.program()
-    # program = AntlrToProgram()
-    # tree_xd = program.visit(tree)
-    # tree_xd.invoke(prc)
-    # print('output', prc.get_output())
+    # program = read_program_from_file("grammar/examples/factorial.txt")
+    # prc = ProgramRunContext()
+    # prc.input = [5]
+    # program.invoke(prc)
+    # print(prc.get_output())
 
 # GENERATING PROGRAM
     # program = generate_program_node_count(12)
@@ -46,9 +50,9 @@ def main():
     # print(p4)
 
     test_set = TestSetsGenerator.generate_1_1_D()
-    best_program = Evolution.perform_evolution(test_set, population_size=1000, max_generations=200)
-
-    # print(best_program)
+    best_program = Evolution.perform_evolution(test_set, population_size=1000, max_generations=200, program_size=20)
+    # best_program.save_to_file("best_program.txt")
+    print(best_program)
     prc = ProgramRunContext()
     prc.input = []
     print(prc.input)

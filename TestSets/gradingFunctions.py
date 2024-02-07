@@ -1,8 +1,4 @@
-import math
-
-
-VERY_BIG_NUMBER = 1_000_000_000
-# TODO: replace inf with VERY_BIG_NUMBER and adjust functions to number of outputs
+VERY_BIG_NUMBER = 1_000_000
 
 
 class GradingFunction:

@@ -10,7 +10,6 @@ class Operator(Node, IMutable):
         super().__init__()
         if operator not in self.operators:
             raise ValueError(f'Unknown operator: {operator}')
-        # print(f'Operator: {operator}')
         self.operator = operator
 
     def __str__(self):

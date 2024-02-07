@@ -7,14 +7,13 @@ from .Expressions import Variable
 
 
 class Program(Node, IMutable, IGrowable):
-    TAB = ' '
     variable_counter = 0
 
     def __init__(self, seed=None, children=None, config=None):
         super().__init__()
         self.rand = Random(seed) if seed is not None else Random()
         from ProgramGenerator.TreeConfig import TreeConfig
-        self.config = config if config is not None else TreeConfig()  # TODO: TreeConfig
+        self.config = config if config is not None else TreeConfig()
         self.children = children if children is not None else []
 
     @property
@@ -65,8 +64,6 @@ class Program(Node, IMutable, IGrowable):
         return s
 
     def grow(self, ctx=None):
-        # if ctx is not None:
-        #     self.children.append(Statement.new_statement(ctx))
         if ctx is not None:
             new_statement = Statement.new_statement(ctx)
             self.children.append(new_statement)
@@ -76,7 +73,6 @@ class Program(Node, IMutable, IGrowable):
             x = self.growables
             for _ in range(10):
                 t = self.config.type_to_grow()
-                # growables_ = [node for node in self.growables if node.__class__ == t]
                 growables_ = [node for node in self.growables if isinstance(node, t)]
                 if growables_:
                     growables_[self.rand.randint(0, len(growables_) - 1)].grow(self)
@@ -89,26 +85,9 @@ class Program(Node, IMutable, IGrowable):
 
     def full_grow(self):
         while self.get_depth() < self.config.max_depth:
-            # print(self.get_depth(), self.config.max_depth)
             for statement in self.statements:
                 statement.full_grow(self, self.config.max_depth - 1)
             self.grow()
-
-    # def mutate(self, t):
-    #     x = self.mutables
-    #     mutables_ = [node for node in self.mutables if isinstance(node, t)]
-    #     if mutables_:
-    #         mutables_[self.rand.randint(0, len(mutables_) - 1)].mutate(self)
-    #         return
-    #     print('this should not happen', t)
-    #     x[self.rand.randint(0, len(x) - 1)].mutate(self)
-    #
-    # def mutate(self, ctx):
-    #     node = self.children[self.rand.randint(0, len(self.children) - 1)]
-    #     self.children.remove(node)
-    #     self.children.insert(self.rand.randint(0, len(self.children) - 1), node)
-
-# TODO: zastanowic sie nad tym xdddd
 
     def mutate(self, ctx_or_t):
         if isinstance(ctx_or_t, Program):
@@ -139,3 +118,8 @@ class Program(Node, IMutable, IGrowable):
     def save_to_file(self, filename):
         with open(filename, 'w') as file:
             file.write(str(self))
+
+    @staticmethod
+    def load_from_file(filename):
+        with open(filename, 'r') as file:
+            content = file.read()
